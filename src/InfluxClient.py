@@ -20,14 +20,12 @@ class InfluxClient:
         return
     
     
+    # insert_data("errors", {
+    #   "service": "login_service",
+    #   "count": 40
+    # })
     def insert_data(self, measurement, data_object):
             
-        # point = (
-        #     Point(measurement)
-        #     .tag("service", "login_service")
-        #     .field("action", "error")
-        #     .field("user", "test")
-        # )
         point = Point(measurement)
         for key in data_object:
             point = point.field(key, data_object[key])

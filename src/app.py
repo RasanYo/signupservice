@@ -1,13 +1,22 @@
 from flask import Flask, request, render_template
 import sys
+from ProxyClient import ProxyClient
 
 app = Flask(__name__, template_folder='../templates', static_folder='../static')
+proxy_client = ProxyClient()
 
 @app.route('/', methods=['GET', 'POST'])
 def registration_form():
     if request.method == 'POST':
         email = request.json.get('email')
         password = request.json.get('password')
+        
+        try:
+            proxy_client.sign_up(email, password)
+        except:
+            print("Monitoring here")
+        
+        
         print('Received email:', email)
         print('Received password:', password)
         sys.stdout.flush() # force output to be printed immediately
