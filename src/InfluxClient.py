@@ -21,14 +21,6 @@ class InfluxClient:
     
     def insert_data(self, email):
     
-<<<<<<< HEAD
-    # insert_data("errors", {
-    #   "service": "login_service",
-    #   "count": 40
-    # })
-    def insert_data(self, measurement, data_object):
-            
-=======
         p = Point("signups").tag("signup").field("email", email)
         self.write_api.write(bucket=bucket, org=org, record=p)
             
@@ -42,7 +34,6 @@ class InfluxClient:
         #     .field("user", "test")
         # )
 
->>>>>>> e4cb055f055e82e0be8838969416b2dfa596b295
         point = Point(measurement)
         for key in data_object:
             point = point.field(key, data_object[key])

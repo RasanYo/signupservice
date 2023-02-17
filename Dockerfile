@@ -9,7 +9,8 @@ COPY . .
 
 # Get the dependencies
 COPY requirements.txt .
-RUN pip install --prefix="/install" -r requirements.txt
+RUN pip install --upgrade pip
+RUN pip install -r requirements.txt
 
 # Expose port 5000 for the Flask app to listen on
 EXPOSE 5000
