@@ -14,9 +14,3 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 
-/*document.addEventListener('DOMContentLoaded', function() {
-  document.querySelector('form').addEventListener('submit', function(event) {
-    event.preventDefault();
-    setTimeout(function(){ window.close(); }, 10000);
-  });
-});*/
