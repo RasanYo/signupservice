@@ -6,7 +6,7 @@ config = {
     "authDomain": "cse-loginservice.firebaseapp.com",
     "projectId": "cse-loginservice",
     "storageBucket": "cse-loginservice.appspot.com",
-    "serviceAccount": "../serviceAccountKey.json",
+    "serviceAccount": "../firebase/serviceAccountKey.json",
     "messagingSenderId": "655431064989",
     "appId": "1:655431064989:web:e37b3ccb837d39a37ea374",
     "measurementId": "G-19ETGCMBKF",
@@ -24,6 +24,12 @@ class ProxyClient :
         self.connected = True
         self.logged_in = False
         self.user = None
+        
+    def get_uid(self):
+        if (self.user):
+            return self.auth.get_account_info(self.user['idToken'])['users'][0]['localId']
+        else:
+            return "guest"
        
     def sign_up(self, email, password):
         self.user = self.auth.create_user_with_email_and_password(email, password)

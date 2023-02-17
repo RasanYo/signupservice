@@ -19,7 +19,20 @@ class InfluxClient:
         )
         return
     
+    def insert_data(self, email):
     
+<<<<<<< HEAD
+    # insert_data("errors", {
+    #   "service": "login_service",
+    #   "count": 40
+    # })
+    def insert_data(self, measurement, data_object):
+            
+=======
+        p = Point("signups").tag("signup").field("email", email)
+        self.write_api.write(bucket=bucket, org=org, record=p)
+            
+    """"
     def insert_data(self, measurement, data_object):
             
         # point = (
@@ -28,13 +41,16 @@ class InfluxClient:
         #     .field("action", "error")
         #     .field("user", "test")
         # )
+
+>>>>>>> e4cb055f055e82e0be8838969416b2dfa596b295
         point = Point(measurement)
         for key in data_object:
             point = point.field(key, data_object[key])
             
         print(f"[POINT] {point}\n Line protocol: {point.to_line_protocol()}")
         self.write_api.write(bucket=bucket, org=org, record=point)
-        
+    """   
+    """
     def query(self, query):
         info = self.query_client.execute(query)
         reader = self.query_client.do_get(info.endpoints[0].ticket)
@@ -43,3 +59,4 @@ class InfluxClient:
         df = data.to_pandas().sort_values(by="time")
         print(df)
         return
+    """
