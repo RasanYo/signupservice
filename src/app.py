@@ -17,8 +17,11 @@ def registration_form():
         try:
             proxy_client.sign_up(email, password)
             influxclient.insert_data(email)
-        except:
-            print("Monitoring here")
+        except Exception as e:
+            influxclient.insert_object("errors", {
+                "error": e.__class__.__name__,
+                "email": email
+            })
         
         
         print('Received email:', email)

@@ -24,8 +24,8 @@ class InfluxClient:
         p = Point("signups").tag("signup").field("email", email)
         self.write_api.write(bucket=bucket, org=org, record=p)
             
-    """"
-    def insert_data(self, measurement, data_object):
+    
+    def insert_object(self, measurement, data_object):
             
         # point = (
         #     Point(measurement)
@@ -40,7 +40,7 @@ class InfluxClient:
             
         print(f"[POINT] {point}\n Line protocol: {point.to_line_protocol()}")
         self.write_api.write(bucket=bucket, org=org, record=point)
-    """   
+      
     """
     def query(self, query):
         info = self.query_client.execute(query)
